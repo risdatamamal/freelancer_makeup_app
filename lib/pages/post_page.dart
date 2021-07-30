@@ -1,47 +1,30 @@
 part of 'pages.dart';
 
-class FreelancerPage extends StatefulWidget {
+class PostPage extends StatefulWidget {
   @override
-  _FreelancerPageState createState() => _FreelancerPageState();
+  _PostPageState createState() => _PostPageState();
 }
 
-class _FreelancerPageState extends State<FreelancerPage> {
+class _PostPageState extends State<PostPage> {
   int selectedIndex = 0;
 
-  Freelancer selectedKategori;
-  List<Freelancer> kategori = [
-    Freelancer(categories: "Makeup Photoshoot"),
-    Freelancer(categories: "Makeup Pernikahan"),
-    Freelancer(categories: "Makeup Wisuda"),
-    Freelancer(categories: "Makeup Pesta"),
+  Post selectedKategori;
+  List<Post> kategori = [
+    Post(category: [mockCategory[0]]),
   ];
-  List<DropdownMenuItem> generateItemsKategori(List<Freelancer> freelancers) {
+  List<DropdownMenuItem> generateItemsKategori(List<Post> posts) {
     List<DropdownMenuItem> items = [];
     for (var item in kategori) {
-      items.add(DropdownMenuItem(child: Text(item.categories), value: item));
+      items.add(
+          DropdownMenuItem(child: Text(item.category.toString()), value: item));
     }
     return items;
   }
 
-  Freelancer selectedWilayah;
-  List<Freelancer> wilayah = [
-    Freelancer(city: "Jakarta"),
-    Freelancer(city: "Bandung"),
-    Freelancer(city: "Yogyakarta"),
-    Freelancer(city: "Depok"),
-  ];
-  List<DropdownMenuItem> generateItemsWilayah(List<Freelancer> freelancers) {
-    List<DropdownMenuItem> items = [];
-    for (var item in wilayah) {
-      items.add(DropdownMenuItem(child: Text(item.city), value: item));
-    }
-    return items;
-  }
-
-  Future<List<Freelancer>> search(String search) async {
+  Future<List<Post>> search(String search) async {
     await Future.delayed(Duration(seconds: 2));
     return List.generate(search.length, (int index) {
-      return Freelancer(
+      return Post(
         name: "$search $index",
       );
     });
@@ -90,7 +73,7 @@ class _FreelancerPageState extends State<FreelancerPage> {
               ),
               height: 90,
               width: double.infinity,
-              child: SearchBar<Freelancer>(
+              child: SearchBar<Post>(
                   onSearch: search,
                   icon: Icon(Icons.search, color: Colors.black),
                   cancellationText: Text("cancel"),
@@ -99,28 +82,23 @@ class _FreelancerPageState extends State<FreelancerPage> {
                     padding: EdgeInsets.all(10),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  onItemFound: (Freelancer freelancer, int index) {
+                  onItemFound: (Post post, int index) {
                     return Column(
-                      children: mockFreelancers
+                      children: mockPosts
                           .map((e) => Padding(
                               padding: const EdgeInsets.fromLTRB(
                                   defaultMargin, 0, defaultMargin, 16),
                               child: GestureDetector(
                                 onTap: () {
                                   Get.to(FreelancerDetailsPage(
-                                    transaction: Transaction(
-                                      freelancer: e,
-                                      user: (context.bloc<UserCubit>().state
-                                              as UserLoaded)
-                                          .user,
-                                    ),
+                                    post: e,
                                     onBackButtonPressed: () {
                                       Get.back();
                                     },
                                   ));
                                 },
-                                child: FreelancerListItem(
-                                  freelancer: e,
+                                child: PostListItem(
+                                  post: e,
                                   itemWidth: listItemWidth,
                                 ),
                               )))
@@ -133,48 +111,24 @@ class _FreelancerPageState extends State<FreelancerPage> {
               padding: EdgeInsets.symmetric(horizontal: defaultMargin),
               color: Colors.white,
               height: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: mainColor,
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: mainColor)),
-                    child: DropdownButton(
-                      hint: Text("Kategori"),
-                      dropdownColor: mainColor,
-                      underline: SizedBox(),
-                      value: selectedKategori,
-                      items: generateItemsKategori(kategori),
-                      onChanged: (item) {
-                        setState(() {
-                          selectedKategori = item;
-                        });
-                      },
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: mainColor,
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: mainColor)),
-                    child: DropdownButton(
-                      hint: Text("Wilayah"),
-                      dropdownColor: mainColor,
-                      underline: SizedBox(),
-                      value: selectedWilayah,
-                      items: generateItemsWilayah(wilayah),
-                      onChanged: (item) {
-                        setState(() {
-                          selectedWilayah = item;
-                        });
-                      },
-                    ),
-                  ),
-                ],
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                    color: mainColor,
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: mainColor)),
+                child: DropdownButton(
+                  hint: Text("Kategori"),
+                  dropdownColor: mainColor,
+                  underline: SizedBox(),
+                  value: selectedKategori,
+                  items: generateItemsKategori(kategori),
+                  onChanged: (item) {
+                    setState(() {
+                      selectedKategori = item;
+                    });
+                  },
+                ),
               ),
             ),
             //// LIST OF FREELANCER
@@ -185,26 +139,21 @@ class _FreelancerPageState extends State<FreelancerPage> {
                 padding: EdgeInsets.only(top: 10.0, bottom: 80.0),
                 child: Builder(builder: (_) {
                   return Column(
-                    children: mockFreelancers
+                    children: mockPosts
                         .map((e) => Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 defaultMargin, 0, defaultMargin, 16),
                             child: GestureDetector(
                               onTap: () {
                                 Get.to(FreelancerDetailsPage(
-                                  transaction: Transaction(
-                                    freelancer: e,
-                                    user: (context.bloc<UserCubit>().state
-                                            as UserLoaded)
-                                        .user,
-                                  ),
+                                  post: e,
                                   onBackButtonPressed: () {
                                     Get.back();
                                   },
                                 ));
                               },
-                              child: FreelancerListItem(
-                                freelancer: e,
+                              child: PostListItem(
+                                post: e,
                                 itemWidth: listItemWidth,
                               ),
                             )))

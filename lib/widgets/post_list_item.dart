@@ -1,10 +1,10 @@
 part of 'widgets.dart';
 
-class FreelancerListItem extends StatelessWidget {
-  final Freelancer freelancer;
+class PostListItem extends StatelessWidget {
+  final Post post;
   final double itemWidth;
 
-  FreelancerListItem({@required this.freelancer, this.itemWidth});
+  PostListItem({@required this.post, this.itemWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,7 @@ class FreelancerListItem extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
-                      image: NetworkImage(freelancer.picturePath),
-                      fit: BoxFit.cover)),
+                      image: NetworkImage(post.thumbnail), fit: BoxFit.cover)),
             ),
             SizedBox(
               width: itemWidth - 182, // 60 + 12 + 110
@@ -28,13 +27,13 @@ class FreelancerListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    freelancer.name,
+                    post.name,
                     style: blackFontStyle2,
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                   ),
                   Text(
-                    freelancer.categories,
+                    post.category.toString(),
                     style: greyFontStyle,
                     maxLines: 3,
                     overflow: TextOverflow.clip,
@@ -49,7 +48,7 @@ class FreelancerListItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: RatingStars(freelancer.rate),
+              child: RatingStars(post.rate),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
@@ -59,7 +58,7 @@ class FreelancerListItem extends StatelessWidget {
                   Text(
                     NumberFormat.currency(
                             symbol: 'Rp ', decimalDigits: 0, locale: 'id-ID')
-                        .format(freelancer.price),
+                        .format(post.price),
                     style: blackFontStyle1.copyWith(fontSize: 14),
                   ),
                 ],

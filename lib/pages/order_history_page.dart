@@ -1,8 +1,6 @@
 part of 'pages.dart';
 
 class OrderHistoryPage extends StatefulWidget {
-  const OrderHistoryPage({Key key}) : super(key: key);
-
   @override
   _OrderHistoryPageState createState() => _OrderHistoryPageState();
 }

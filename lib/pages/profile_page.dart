@@ -45,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         .bloc<UserCubit>()
                                         .state as UserLoaded)
                                     .user
-                                    .picturePath),
+                                    .image),
                                 fit: BoxFit.cover)),
                       ),
                     ),

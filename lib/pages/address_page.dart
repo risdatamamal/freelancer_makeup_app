@@ -8,7 +8,7 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-  TextEditingController houseController = TextEditingController();
+
   User selectedCities;
   List<User> cities = [
     User(city: "Jakarta"),
@@ -78,29 +78,6 @@ class _AddressPageState extends State<AddressPage> {
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
                   hintText: 'Type your address'),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
-            child: Text(
-              "House No.",
-              style: blackFontStyle2,
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.black)),
-            child: TextField(
-              controller: houseController,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintStyle: greyFontStyle,
-                  hintText: 'Type your house number'),
             ),
           ),
           Container(

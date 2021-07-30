@@ -10,23 +10,13 @@ class OrderListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 60,
-          height: 60,
-          margin: EdgeInsets.only(right: 12),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                  image: NetworkImage(transaction.freelancer.picturePath),
-                  fit: BoxFit.cover)),
-        ),
         SizedBox(
           width: itemWidth - 182, // 60 + 12 + 110
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                transaction.freelancer.name,
+                transaction.jasa.name,
                 style: blackFontStyle2,
                 maxLines: 1,
                 overflow: TextOverflow.clip,

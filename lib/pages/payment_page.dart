@@ -35,17 +35,6 @@ class PaymentPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          margin: EdgeInsets.only(right: 12),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      transaction.freelancer.picturePath),
-                                  fit: BoxFit.cover)),
-                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -56,7 +45,7 @@ class PaymentPage extends StatelessWidget {
                               // 12 - (jarak picture ke title),
                               // 78, (lebar jumlah items),
                               child: Text(
-                                transaction.freelancer.name,
+                                transaction.jasa.name,
                                 style: blackFontStyle2,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -67,7 +56,7 @@ class PaymentPage extends StatelessWidget {
                                   locale: 'id-IDN',
                                   symbol: 'Rp',
                                   decimalDigits: 0,
-                                ).format(transaction.freelancer.price),
+                                ).format(transaction.jasa.price),
                                 style: greyFontStyle.copyWith(fontSize: 13)),
                           ],
                         ),
@@ -98,7 +87,7 @@ class PaymentPage extends StatelessWidget {
                             defaultMargin -
                             5,
                         child: Text(
-                          transaction.freelancer.name,
+                          transaction.jasa.name,
                           style: greyFontStyle,
                         )),
                     SizedBox(
@@ -110,8 +99,8 @@ class PaymentPage extends StatelessWidget {
                             locale: 'id-ID',
                             symbol: 'Rp',
                             decimalDigits: 0,
-                          ).format(transaction.quantity *
-                              transaction.freelancer.price),
+                          ).format(
+                              transaction.quantity * transaction.jasa.price),
                           style: blackFontStyle3,
                           textAlign: TextAlign.right,
                         )),
@@ -172,7 +161,7 @@ class PaymentPage extends StatelessWidget {
                             symbol: 'Rp',
                             decimalDigits: 0,
                           ).format(transaction.quantity *
-                              transaction.freelancer.price *
+                              transaction.jasa.price *
                               10 /
                               100),
                           style: blackFontStyle3,
@@ -267,7 +256,7 @@ class PaymentPage extends StatelessWidget {
                             defaultMargin -
                             5,
                         child: Text(
-                          transaction.user.phoneNumber,
+                          transaction.user.phone,
                           style: blackFontStyle3,
                           textAlign: TextAlign.right,
                         )),
@@ -294,32 +283,6 @@ class PaymentPage extends StatelessWidget {
                             5,
                         child: Text(
                           transaction.user.address,
-                          style: blackFontStyle3,
-                          textAlign: TextAlign.right,
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width / 2 -
-                            defaultMargin -
-                            5,
-                        child: Text(
-                          'House No.',
-                          style: greyFontStyle,
-                        )),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width / 2 -
-                            defaultMargin -
-                            5,
-                        child: Text(
-                          transaction.user.houseNumber,
                           style: blackFontStyle3,
                           textAlign: TextAlign.right,
                         )),

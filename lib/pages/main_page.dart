@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
             },
             children: [
               Center(
-                child: FreelancerPage(),
+                child: PostPage(),
               ),
               Center(
                 child: OrderHistoryPage(),

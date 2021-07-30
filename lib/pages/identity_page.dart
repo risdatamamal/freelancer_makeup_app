@@ -6,10 +6,10 @@ class IdentityPage extends StatefulWidget {
 }
 
 class _IdentityPageState extends State<IdentityPage> {
+  TextEditingController nikController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nikController = TextEditingController();
-
     return GeneralPage(
       title: 'Identity',
       subtitle: "Make sure your identity is valid",

@@ -11,5 +11,5 @@ part 'custom_bottom_navbar.dart';
 part 'rating_stars.dart';
 part 'category_card.dart';
 part 'custom_tabbar.dart';
-part 'freelancer_list_item.dart';
+part 'post_list_item.dart';
 part 'order_list_item.dart';

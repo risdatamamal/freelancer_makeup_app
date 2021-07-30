@@ -89,7 +89,7 @@ class _SignInPageState extends State<SignInPage> {
                         UserState state = context.bloc<UserCubit>().state;
 
                         if (state is UserLoaded) {
-                          context.bloc<FreelancerCubit>().getFreelancers();
+                          context.bloc<PostCubit>().getPosts();
                           context.bloc<TransactionCubit>().geTransactions();
                           Get.to(MainPage());
                         }

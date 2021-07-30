@@ -4,16 +4,16 @@ enum TransactionStatus { delivered, on_delivery, pending, cancelled }
 
 class Transaction extends Equatable {
   final int id;
-  final Freelancer freelancer;
+  final User user;
+  final Jasa jasa;
   final int quantity;
   final int total;
   final DateTime dateTime;
   final TransactionStatus status;
-  final User user;
 
   Transaction(
       {this.id,
-      this.freelancer,
+      this.jasa,
       this.quantity,
       this.total,
       this.dateTime,
@@ -22,7 +22,7 @@ class Transaction extends Equatable {
 
   Transaction copyWith({
     int id,
-    Freelancer freelancer,
+    Jasa jasa,
     int quantity,
     int total,
     DateTime dateTime,
@@ -31,7 +31,7 @@ class Transaction extends Equatable {
   }) {
     return Transaction(
         id: id ?? this.id,
-        freelancer: freelancer ?? this.freelancer,
+        jasa: jasa ?? this.jasa,
         quantity: quantity ?? this.quantity,
         total: total ?? this.total,
         dateTime: dateTime ?? this.dateTime,
@@ -40,34 +40,33 @@ class Transaction extends Equatable {
   }
 
   @override
-  List<Object> get props =>
-      [id, Freelancer, quantity, total, dateTime, status, user];
+  List<Object> get props => [id, jasa, quantity, total, dateTime, status, user];
 }
 
 List<Transaction> mockTransactions = [
   Transaction(
     id: 1,
-    freelancer: manualBrew[1],
+    jasa: mockJasas[0],
     quantity: 10,
-    total: (manualBrew[1].price * 10 * 1.1).round() + 9000,
+    total: (mockJasas[0].price * 10 * 1.1).round() + 9000,
     dateTime: DateTime.now(),
     status: TransactionStatus.on_delivery,
     user: mockUser,
   ),
   Transaction(
     id: 2,
-    freelancer: espressoBased[2],
+    jasa: mockJasas[0],
     quantity: 7,
-    total: (espressoBased[2].price * 7 * 1.1).round() + 9000,
+    total: (mockJasas[0].price * 7 * 1.1).round() + 9000,
     dateTime: DateTime.now(),
     status: TransactionStatus.delivered,
     user: mockUser,
   ),
   Transaction(
     id: 3,
-    freelancer: snack[2],
+    jasa: mockJasas[0],
     quantity: 4,
-    total: (snack[2].price * 4 * 1.1).round() + 9000,
+    total: (mockJasas[0].price * 4 * 1.1).round() + 9000,
     dateTime: DateTime.now(),
     status: TransactionStatus.cancelled,
     user: mockUser,

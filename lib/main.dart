@@ -1,4 +1,4 @@
-import 'package:freelancer_makup_app/cubit/freelancer_cubit.dart';
+import 'package:freelancer_makup_app/cubit/post_cubit.dart';
 import 'package:freelancer_makup_app/cubit/transaction_cubit.dart';
 import 'package:freelancer_makup_app/cubit/user_cubit.dart';
 import 'package:freelancer_makup_app/pages/pages.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           create: (_) => UserCubit(),
         ),
         BlocProvider(
-          create: (_) => FreelancerCubit(),
+          create: (_) => PostCubit(),
         ),
         BlocProvider(
           create: (_) => TransactionCubit(),
